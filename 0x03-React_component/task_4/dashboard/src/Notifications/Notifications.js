@@ -1,40 +1,43 @@
-import React from "react";
-import NotificationItem from "./NotificationItem";
-import "./Notifications.css";
-import propTypes from 'prop-types';
+import React from 'react';
+import './Notifications.css';
 import closeIcon from '../assets/close-icon.png';
-import NotificationItemShape from "./NotificationItemShape";
+import NotificationItem from './NotificationItem';
+import PropTypes from 'prop-types';
+import NotificationItemShape from './NotificationItemShape';
 
 class Notifications extends React.Component {
 	constructor(props) {
-	  super(props);
-  
-	  this.markAsRead = this.markAsRead.bind(this);
+		super(props);
+		this.markAsRead = this.markAsRead.bind(this);
 	}
-  
+
 	markAsRead(id) {
-	  console.log(`Notification ${id} has been marked as read`);
+		console.log(`Notification ${id} has been marked as read`);
 	}
-  
+
 	render() {
 		return (
 			<React.Fragment>
-				{displayDrawer ? (
+				{this.props.displayDrawer ? (
 					<div className='flex-area'>
 						<div className='menuItem'>
 							<p>Your notifications</p>
 						</div>
 						<div className='Notifications'>
 							<ul>
-								{listNotifications && listNotifications.length > 0 ? (
-									listNotifications.map(({ id, html, type, value }) => (
-										<NotificationItem
-											key={id}
-											type={type}
-											value={value}
-											html={html}
-										/>
-									))
+								{this.props.listNotifications &&
+								this.props.listNotifications.length > 0 ? (
+									this.props.listNotifications.map(
+										({ id, html, type, value }) => (
+											<NotificationItem
+												key={id}
+												markAsRead={this.markAsRead}
+												type={type}
+												value={value}
+												html={html}
+											/>
+										)
+									)
 								) : (
 									<div className='notification-header'>
 										<NotificationItem value='No new notification for now' />
@@ -60,17 +63,17 @@ class Notifications extends React.Component {
 				)}
 			</React.Fragment>
 		);
-	};
+	}
 }
-  
+
 Notifications.propTypes = {
-    displayDrawer: propTypes.bool.isRequired,
-    listNotifications: propTypes.arrayOf(NotificationItemShape),
+	displayDrawer: PropTypes.bool,
+	listNotifications: PropTypes.arrayOf(NotificationItemShape),
 };
 
 Notifications.defaultProps = {
-    displayDrawer: false,
-    listNotifications: [],
+	displayDrawer: false,
+	listNotifications: [],
 };
 
 export default Notifications;
