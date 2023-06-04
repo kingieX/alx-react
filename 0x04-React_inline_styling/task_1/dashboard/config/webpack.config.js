@@ -33,9 +33,6 @@ module.exports = {
 			},
 		],
 	},
-	resolve: {
-		extensions: ['*', '.js', '.jsx'],
-	},
 	devServer: {
 		static: './dist',
 		compress: true,
