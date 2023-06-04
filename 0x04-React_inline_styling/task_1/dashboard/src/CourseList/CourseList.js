@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
 
   th: {
     borderBottom: "1px solid #ddd",
+    width: "80%",
   },
 
-  th, td: {
+  td: {
     width: "80%",
   },
 
