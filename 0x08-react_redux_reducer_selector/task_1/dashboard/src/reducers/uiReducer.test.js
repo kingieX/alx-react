@@ -1,6 +1,6 @@
-import uiReducer, { defaultState } from './uiReducer';
-import { selectCourse } from '../actions/courseActionCreators';
 import { displayNotificationDrawer } from '../actions/uiActionCreators';
+import { selectCourse } from '../actions/courseActionCreators';
+import uiReducer, { defaultState } from './uiReducer';
 
 describe('uiReducer', () => {
 	it('Verifies initial state returned when no action is passed to uiReducer', () => {
